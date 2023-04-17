@@ -5,10 +5,13 @@ struct String
 {
 private:
     size_t m_size;
-    char* m_str;
+    char* m_str = nullptr;
 public:
     //конструктор по умолчанию (базовый конструктор)
-    String()=default;
+    String(){
+        m_size = 0;
+        m_str = new char[0];
+    };
 
     //неявное преобразование из int в char
     String(char c, size_t size) : m_size(size++), m_str(new char[size])
