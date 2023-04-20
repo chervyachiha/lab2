@@ -151,14 +151,17 @@ std::istream& operator>>(std::istream& in, String& s)
     {
         if (a == ' ' || a == '\n')
             break;
-        char* mas = new char[s.m_size+1];
+        char* mas = new char[s.m_size]; //
         for (int i = 0; i < s.m_size; i++)
             mas[i] = s.m_str[i];
+
         delete[] s.m_str;
         s.m_size++;
-        s.m_str = new char[s.m_size];
+        s.m_str = new char[s.m_size+1];
+
         for (int i = 0; i < s.m_size-1; i++)
             s.m_str[i] = mas[i];
+
         s.m_str[s.m_size - 1] = a;
         s.m_str[s.m_size] = 0;
         delete[] mas;
@@ -169,9 +172,9 @@ std::istream& operator>>(std::istream& in, String& s)
 int main()
 {
     String s1('a', 10);
-    String s2;
+    String s2('s',3);
     std::cin >> s2;
-    String s3 = s1+s2;
+    //String s3 = s1+s2;
    // s3+=s1;
-    std::cout << s3;
+    std::cout << s2;
 }
