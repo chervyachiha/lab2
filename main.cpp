@@ -66,6 +66,7 @@ public:
         }
         for (int i = 0; i < other.m_size; i++)
             m_str[index + i] = other.m_str[i];
+        m_str[m_size] = 0;
         delete[] mas;
         return *this;
     }
@@ -150,7 +151,7 @@ std::istream& operator>>(std::istream& in, String& s)
     {
         if (a == ' ' || a == '\n')
             break;
-        char* mas = new char[s.m_size];
+        char* mas = new char[s.m_size+1];
         for (int i = 0; i < s.m_size; i++)
             mas[i] = s.m_str[i];
         delete[] s.m_str;
@@ -159,6 +160,7 @@ std::istream& operator>>(std::istream& in, String& s)
         for (int i = 0; i < s.m_size-1; i++)
             s.m_str[i] = mas[i];
         s.m_str[s.m_size - 1] = a;
+        s.m_str[s.m_size] = 0;
         delete[] mas;
     }
     return in;
@@ -170,5 +172,6 @@ int main()
     String s2;
     std::cin >> s2;
     String s3 = s1+s2;
+   // s3+=s1;
     std::cout << s3;
 }
